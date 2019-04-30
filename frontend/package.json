@@ -20,8 +20,10 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "core-js": "^2.5.4",
-    "rxjs": "~6.3.3",
+    "ngx-socket-io": "^2.1.1",
+    "rxjs": "^6.5.1",
     "tslib": "^1.9.0",
+    "zone": "^0.3.4",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

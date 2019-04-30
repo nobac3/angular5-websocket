@@ -84,7 +84,6 @@ io.on('connection', function(socket){
 
   socket.on("sentMessage", msg => {
     var fullDate = new Date()
-    console.log(color)
 
     io.to(room).emit('msg', {user: username ,msg, room, date: fullDate, color});
   });
