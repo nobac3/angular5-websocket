@@ -1,0 +1,75 @@
+.usernameForm{
+    margin-top: 20px; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 10px;
+}
+
+.buttonSignIn{ 
+
+width: 180px
+}
+
+.mainMsg{
+
+    margin: 30px;
+
+}
+
+.msgList{
+
+    padding: 20px;
+}
+
+/* .bottomInput{
+
+    /* position: absolute;
+    bottom:0;
+
+    width:80%; */
+    /* background:red;
+    width:300px;
+    display:table;
+    border-spacing:4px
+} */
+
+/* .bottomButton{
+    bottom: 0;
+    position: absolute; 
+    float:left;
+    width:20%;
+
+    background:#009; color:#cef; text-align:center;
+    width:50%;
+    display:table-cell;
+
+}  */
+
+.wrap {
+    background:red;
+    width:300px;
+    display:table;
+    border-spacing:4px
+}
+.bottomInput {
+
+    bottom:0;
+    left:0;
+    position: absolute; 
+    float:left;
+    width:80%;
+    height:30px;
+
+}
+
+.bottomButton{
+
+    bottom:0;
+    right:0;
+    position: absolute; 
+    float:right;
+    width:20%;
+    height:35px;
+    font-size: 20px;
+
+}

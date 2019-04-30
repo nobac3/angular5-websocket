@@ -1,26 +1,45 @@
-<div [hidden]='signInStatus'>
-  <label>username: </label>
-  <input type="text" name='username' [(ngModel)]='username' #user>
-  <label> room:</label>
-  <input type="text" name='room' [(ngModel)]='room' #rm>
-  <button type='submit' (click)='createUser(user.value, rm.value)'>submit</button>
-</div>
-
-<div [hidden]='!signInStatus'> 
-
-  <div *ngFor='let m of messages'>
-
-    {{m.msg}} - <span class='smallFont'>{{m.user}} {{m.date | date: 'dd-MM-yyyy HH:mm' }}</span>
-     <br>
-
-  </div>
+<div [hidden]='signInStatus' class='usernameForm'>
 
   <form>
+    <mat-form-field class='inputUsername'>
+      <input matInput type="text" name='username' placeholder='Enter Username' [(ngModel)]='username' #user>
+    </mat-form-field>
 
-    <input type="text" name='message' [(ngModel)]='messageText' #txt> 
 
-    <button type='submit' (click)='onSubmit(txt.value)'>submit</button>
-
+    <mat-form-field class='inputSelect'>
+      <mat-select placeholder="Choose Room" #rm>
+        <mat-option value="Boston">Boston</mat-option>
+        <mat-option value="London">London</mat-option>
+        <mat-option value="Paris">Paris</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <button class='buttonSignIn' mat-stroked-button type='submit' (click)='createUser(user.value, rm.value)'>submit</button>
 
   </form>
 </div>
+
+<div [hidden]='!signInStatus' class='mainMsg'> 
+
+  <h1>{{chatroom}}</h1>
+
+  <mat-divider></mat-divider>
+  <div class='msgList'>
+    <div *ngFor='let m of messages'>
+      <div [ngStyle]='{"color": m.color}'>
+            {{m.msg}} - <span class='smallFont'>{{m.user}} {{m.date | date: 'dd-MM-yyyy HH:mm' }}</span><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [hidden]='!signInStatus'>
+  <form>
+    <input class='bottomInput' type="text" name='message' [(ngModel)]='messageText' #txt> 
+    <!-- <button mat-stroked-button class='bottomButton' type='submit' (click)='onSubmit(txt.value)'>submit</button> -->
+
+    <button mat-flat-button class='bottomButton' color="primary" type='submit' (click)='onSubmit(txt.value)'>Submit</button>
+  </form>
+</div>
+
+

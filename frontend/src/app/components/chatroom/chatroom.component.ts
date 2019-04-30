@@ -17,6 +17,8 @@ export class ChatroomComponent implements OnInit {
   messages: Message[] = []
   messageText: string = ''
   chatroom: string
+  user:string
+  color:string
 
   private _sub: Subscription;
 
@@ -24,28 +26,71 @@ export class ChatroomComponent implements OnInit {
 
   ngOnInit() {
     
-    this.getMessages()
-    
     this._sub = this.chatService.msg.subscribe(msg => {
+      
       this.messages.push(msg)
       this.chatService.saveMessage(msg)
     })
     
   }
 
-
   ngOnDestroy() {
     this._sub.unsubscribe();
   }
 
+  colorCheck: boolean = true
+  length: number
+  i:number = 1
+
   getMessages(){
     this.chatService.getSavedMessages().subscribe(msg =>{ 
 
-      this.messages = msg
+      this.length = msg.length
+      //var colorCheck = true
+      msg.forEach(m =>{ 
+        
+        //loads the messages for the right room
+        if(m.room == this.chatroom) {
+          this.messages.push(m)
+        }
+
+        console.log(this.colorCheck)
+        if(this.colorCheck == true) {
+
+          if(m.user == this.user){
 
 
+            this.color = m.color
+            this.colorCheck = false
 
+          }
+      
+        }
+
+        if(this.colorCheck == true && this.i == this.length){ 
+
+
+          var letters = '0123456789ABCDEF';
+          var c = '#';
+          for (var i = 0; i < 6; i++) {
+            c += letters[Math.floor(Math.random() * 16)];
+          }
+
+          this.color = c
+
+        }
+
+        this.i++
+      })
+   
+      
     })
+    
+    setTimeout(() =>{ 
+
+    this.chatService.getColor(this.color)
+
+      }, 300) 
   }
 
   saveMessage(msgObject){
@@ -57,6 +102,8 @@ export class ChatroomComponent implements OnInit {
 
     this.signInStatus = true
     this.chatroom = room
+    this.user = username
+    this.getMessages()
     this.chatService.signIn(username, room)
 
   }

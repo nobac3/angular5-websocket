@@ -18,9 +18,15 @@ export class ChatService {
     return this.http.get('http://localhost:3000/messagelist')
   }
 
+  getColor(c){
+
+    this.socket.emit('color', c)
+  }
+
   saveMessage(msgObject){
 
     this.http.post('http://localhost:3000/post',msgObject ).subscribe((res) =>{ console.log(res)})
+
   }
 
   signIn(username:string, room:string){
@@ -32,7 +38,6 @@ export class ChatService {
   newMessage(msg:string){
 
     this.socket.emit('sentMessage', msg)
-
   }
 
   
